@@ -31,7 +31,26 @@ const int INF = 0x3f3f3f3f;
 const ll LINF = 0x3f3f3f3f3f3f3f3fLL;
 
 void solve() {
-    // Your solution here
+    ll res = 0;
+    while (true) {
+        string present;
+        cin >> present;
+        if (present == "") break;
+
+        int pf = 0; // present square feet needed
+        size_t firstX = present.find("x");
+        size_t lastX = present.rfind("x");
+
+        int l = stoi(present.substr(0, firstX));
+        int w = stoi(present.substr(firstX + 1, lastX - firstX - 1));
+        int h = stoi(present.substr(lastX + 1));
+
+        pf = 2*l*w + 2*w*h + 2*h*l;
+        
+        res += pf;
+    }
+
+    cout << res << endl;
 }
 
 int main() {
