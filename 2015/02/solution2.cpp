@@ -37,7 +37,7 @@ void solve() {
         cin >> present;
         if (present == "") break;
 
-        int pf = 0; // present square feet needed
+        int ribbon = 0; // present square feet needed
         size_t firstX = present.find("x");
         size_t lastX = present.rfind("x");
 
@@ -45,9 +45,11 @@ void solve() {
         int w = stoi(present.substr(firstX + 1, lastX - firstX - 1));
         int h = stoi(present.substr(lastX + 1));
 
-        pf = 2*l*w + 2*w*h + 2*h*l + min(min(l*w, w*h), h*l);
+        ribbon = min(min(l+w, w+h), h+l) * 2;
+
+        ribbon += l*w*h;
         
-        res += pf;
+        res += ribbon;
     }
 
     cout << res << endl;
