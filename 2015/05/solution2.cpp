@@ -34,29 +34,26 @@ bool solve(string s) {
   // check at least one letter that appear twice
   bool isContainPair = false;
   unordered_map<string, int> cp = {};
-  
+   
   // check not contain next each other  
   bool isContainRepeats = false;
 
-  cout << s << endl;
   for (int i = 1; i < s.size(); i ++) {
 
     string ss = s.substr(i - 1, 2);
-    if (!(i > 1 && s[i] == s[i - 1] && s[i - 1] == s[i - 2]) && i > 2 && s[i] != s[i - 3]) {
-      if (cp[ss] == 1) {
+      if (cp[ss] != 0 && i - 1 != cp[ss]) {
         cout << "test 1: " << ss << " " << endl;
         isContainPair = true;
-      } else {
-        cp[ss] = 1;
+      } else if (cp[ss] == 0) {
+        cp[ss] = i;
       }
-    }
     
     if (i > 1 && s[i - 2] == s[i]) {
       isContainRepeats = true;
       cout << "test 2: " << s[i - 2] << s[i - 1] << s[i] << " ";
     }
-    cout << endl;
   }
+  cout << endl;
 
   return isContainPair && isContainRepeats;
 }
